@@ -14,10 +14,6 @@ public class ANN {
 		NeuralNetwork neuralNetwork = new MultiLayerPerceptron(TransferFunctionType.SIGMOID,1, 50, 1);
         DataSet trainingSet = new DataSet(1, 1);
         
-        neuralNetwork.setInput(0.3);
-        neuralNetwork.calculate();
-        System.out.println(Arrays.toString(neuralNetwork.getOutput()));
-
         trainingSet.addRow(new double[]{0}, new double[]{0});
         trainingSet.addRow(new double[]{0.1}, new double[]{0});
         trainingSet.addRow(new double[]{0.2}, new double[]{0});
