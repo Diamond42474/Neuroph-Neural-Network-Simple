@@ -9,7 +9,7 @@ import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.util.TransferFunctionType;
 
 public class Sere {
-	private  String directory="";
+	private  String directory="/Users/logan42474/Desktop/ANN.txt";
 	public void sere(NeuralNetwork nn) {
 		try {
 	        
@@ -23,16 +23,14 @@ public class Sere {
 	         i.printStackTrace();
 	      }
 	}
-	public NeuralNetwork desere() {
-		NeuralNetwork e = new MultiLayerPerceptron(TransferFunctionType.SIGMOID,1, 20,20, 1);
+	public void desere() {
 		 try {
 		       FileInputStream fileIn = new FileInputStream(directory);
 		       ObjectInputStream in = new ObjectInputStream(fileIn);
-		       e = (NeuralNetwork) in.readObject();
-		       System.out.println(e.toString());
+		       Brain.nn = (NeuralNetwork) in.readObject();
+		       
 		       in.close();
 		       fileIn.close();
-		       return e;
 		    }catch(IOException ie) {
 		       ie.printStackTrace();
 		       
@@ -41,7 +39,6 @@ public class Sere {
 		       c.printStackTrace();
 		       
 		    }
-		return e;
 	}
-
+	
 }
