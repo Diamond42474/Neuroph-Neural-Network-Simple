@@ -13,36 +13,25 @@ import org.neuroph.util.TransferFunctionType;
 public class ANN {
 	public static ArrayList<Double> level = new ArrayList<Double>();
 	public static double output;
+	
 	public static void learn() {
 		Sere s = new Sere();
 		s.desere();
        
         
         String inputFileName = "/Users/logan42474/Desktop/Workbook1.csv";
-        DataSet dataSet = DataSet.createFromFile(inputFileName, 3, 3,",", false);
-        System.out.println("Input Size: "+dataSet.getInputSize());
-        System.out.println("Output Size: "+dataSet.getOutputSize());
-        /*
-        DataSet trainingSet = new DataSet(1, 1);
-        trainingSet.addRow(new double[]{0}, new double[]{0});
-        trainingSet.addRow(new double[]{0.1}, new double[]{0});
-        trainingSet.addRow(new double[]{0.2}, new double[]{0});
-        trainingSet.addRow(new double[]{0.3}, new double[]{0});
-        trainingSet.addRow(new double[]{0.4}, new double[]{0});
-        trainingSet.addRow(new double[]{0.49}, new double[]{0});
-        trainingSet.addRow(new double[]{0.4}, new double[]{0});
-        trainingSet.addRow(new double[]{0.4}, new double[]{0});
-        trainingSet.addRow(new double[]{0.5}, new double[]{1});
-        trainingSet.addRow(new double[]{0.6}, new double[]{1});
-        trainingSet.addRow(new double[]{0.7}, new double[]{1});
-        trainingSet.addRow(new double[]{0.8}, new double[]{1});
-        trainingSet.addRow(new double[]{0.9}, new double[]{1});
-        trainingSet.addRow(new double[]{1}, new double[]{1});
-        */
+        DataSet dataSet = DataSet.createFromFile(inputFileName, 3, 3,",", true);
+        
+        //System.out.println("Input Size: "+dataSet.getInputSize());
+        //System.out.println("Output Size: "+dataSet.getOutputSize());
+       
         BackPropagation backPropagation = new BackPropagation();
-        backPropagation.setMaxIterations(5000000);
-        //backPropagation.setMaxError(0.1);
+        backPropagation.setMaxIterations(500);
+        
+        //backPropagation.setMaxError(0.14);
         Brain.nn.learn(dataSet, backPropagation);
+        //System.out.println("Error: "+backPropagation.getTotalNetworkError());
+        Error_Display.text.setText(Double.toString(backPropagation.getTotalNetworkError()));
        s.sere(Brain.nn);
            
         }
@@ -66,7 +55,7 @@ public class ANN {
 	}
 	public void make() {
 		
-		Brain.nn = new MultiLayerPerceptron(TransferFunctionType.SIGMOID,3,3,3,3);
+		Brain.nn = new MultiLayerPerceptron(TransferFunctionType.SIGMOID,3,10,10,3);
 		Sere s = new Sere();
 		s.sere(Brain.nn);
 	}
